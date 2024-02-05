@@ -25,5 +25,9 @@ module.exports = {
         "sourceType": "module"
     },
     "rules": {
+    },
+    "plugins":{
+            "plugins": ["jest"]
+          
     }
 }
