@@ -5,7 +5,7 @@ const testShip = new Ship('Submarine', 3)
 
 test('Ship class sends correct object', () => {
     expect(testShip).toEqual({
-    name: 'Submarine',
+    model: 'Submarine',
     length: 3,
     hits: 0,
     sunk: false  })

@@ -1,3 +1,4 @@
+import Ship from "./ships"
 
 
 
@@ -5,7 +6,9 @@ export default class Gameboard{
     constructor(num){
         
         this.xy = num
+        this.remaining = 0
         this.grid = []
+        this.ships = []
         for(let i = 0; i < this.xy + 2; i++){ 
 
             let last = this.xy + 1
@@ -23,15 +26,24 @@ export default class Gameboard{
             }
             
     }
+
+    createShip(model, length){
+        let newShip = new Ship(model, length)
+        this.ships.push(newShip)
+    }
+
+    placeShip(model, length, location, orientation){
+        
+    }
+
+    receiveAttack(x,y){
+        //validate target
+        //if ship at grid location ship.hit 
+            //ship.isSunk if ship is sunk >> gameboard.remaning ships
+        //else mark as miss
+    }
+
+
 }
 
 
-/*     if(i === 0 || i === this.xy+2) {
-                
-                let row = new Array(this.xy+2).fill(0)
-                this.grid.push(row)
-            }
-            else{
-                this.grid.push(new Array(this.xy+1).fill(1,1).push(0));
-                this.grid[0] = 0
-            } */
