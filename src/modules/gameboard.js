@@ -32,9 +32,33 @@ export default class Gameboard{
         this.ships.push(newShip)
     }
 
-    placeShip(model, length, location, orientation){
-        
+    placeShip(ship, location, direction){
+        if(direction === "north"){
+            let coordinates = createPlacementCoordinates(location[1],+1,length)
+        }
+        else if(direction === "south"){
+            let coordinates = createPlacementCoordinates(location[1],-1,length)
+        }
+        else if(direction === "left"){
+            let coordinates = createPlacementCoordinates(location[0],-1,length)
+        }
+        else if(direction === "right"){
+            let coordinates = createPlacementCoordinates(location[0],+1,length)
+        }
     }
+
+    createPlacementCoordinates(location,direction,length){
+        let coordinates = []
+        for(let i=0; i < length; i++){
+
+        }
+    }
+
+    validatePlacement(gridCode, coordinates){ ///gridCode = first letter of ship model
+    
+    }
+
+    
 
     receiveAttack(x,y){
         //validate target
