@@ -1,8 +1,8 @@
 
 export default class Ship{
-    constructor(model, length){
+    constructor(model, size){
         this.model = model;
-        this.length = length;
+        this.size = size;
         this.hits = 0;
         this.sunk = false;
     }
@@ -12,7 +12,7 @@ export default class Ship{
     }
 
     isSunk(){
-        if(this.hits >= this.length) return true
+        if(this.hits >= this.size) return true
 
         return false
     }

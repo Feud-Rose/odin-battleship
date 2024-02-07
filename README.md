@@ -5,7 +5,7 @@ https://www.theodinproject.com/lessons/node-path-javascript-battleship
 Grid Values:
 
 null = outside of board
-0 = empty space
+"empty" = empty space
 (M)issed = empty space that was attacked
 (C)arrier = Ship with length of 5
 (B)attleship = Ship with length of 4

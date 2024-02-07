@@ -19,7 +19,7 @@ export default class Gameboard{
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill(0,1)
+            let row = new Array(this.xy+1).fill("empty",1)
             row[0] = null
             row.push(null)
             this.grid.push(row)}
@@ -27,35 +27,86 @@ export default class Gameboard{
             
     }
 
-    createShip(model, length){
-        let newShip = new Ship(model, length)
+    createShip(model, size){
+        let newShip = new Ship(model, size)
         this.ships.push(newShip)
     }
 
+    
     placeShip(ship, location, direction){
-        if(direction === "north"){
-            let coordinates = createPlacementCoordinates(location[1],+1,length)
+        let size = ship.size
+        
+
+        if(direction === "up"){
+            let coordinates = this.createTileArrayStaticX(location,+1,size)
+            let validate = this.validatePlacement(coordinates)
+
+            if(validate)this.placeShipAtTiles(ship.model,coordinates)
+
+            return validate
         }
-        else if(direction === "south"){
-            let coordinates = createPlacementCoordinates(location[1],-1,length)
+        else if(direction === "down"){
+            let coordinates = this.createTileArrayStaticX(location,-1,size)
+            let validate = this.validatePlacement(coordinates)
+
+            if(validate)this.placeShipAtTiles(ship.model,coordinates)
+
+            return validate
         }
         else if(direction === "left"){
-            let coordinates = createPlacementCoordinates(location[0],-1,length)
+            let coordinates = this.createTileArrayStaticY(location,-1,size)
+            let validate = this.validatePlacement(coordinates)
+
+            if(validate)this.placeShipAtTiles(ship.model,coordinates)
+
+            return validate
         }
         else if(direction === "right"){
-            let coordinates = createPlacementCoordinates(location[0],+1,length)
+            let coordinates = this.createTileArrayStaticY(location,+1,size)
+            let validate = this.validatePlacement(coordinates)
+
+            if(validate)this.placeShipAtTiles(ship.model,coordinates)
+
+            return validate
         }
     }
 
-    createPlacementCoordinates(location,direction,length){
+    createTileArrayStaticX([x, y], direction, size){
         let coordinates = []
-        for(let i=0; i < length; i++){
-
+        coordinates.push([x,y])
+        for(let i=0; i < size - 1; ++i){
+        y += direction
+        coordinates.push([x,y])
         }
+        return coordinates
+    }
+    createTileArrayStaticY([x,y], direction, size){
+        let coordinates = []
+        coordinates.push([x,y])
+        for(let i=0; i < size - 1; ++i){
+        x += direction
+        coordinates.push([x,y])
+        }
+        return coordinates
     }
 
-    validatePlacement(gridCode, coordinates){ ///gridCode = first letter of ship model
-    
+    validatePlacement(coordinates){ 
+       for(let i = 0; i < coordinates.length; i++){
+        let x = coordinates[i][0]
+        let y = coordinates[i][1]
+        if(x === null || y === null) return false
+        else if(x <= 0 || y <= 0) return false
+        else if(x >= this.xy || y >= this.xy) return false
+        }
+        return true
+    }
+
+    placeShipAtTiles(shipModel,tiles){
+        for(let i = 0; i < tiles.length; i++){
+            let x = tiles[i][0]
+            let y =  tiles[i][1]
+            this.grid[x][y] = shipModel
+        }
     }
 
     
