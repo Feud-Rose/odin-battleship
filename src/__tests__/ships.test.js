@@ -1,14 +1,15 @@
 import Ship from "../modules/ships"
 
 
-const testShip = new Ship('Submarine', 3)
+const testShip = new Ship('submarine', 3)
 
 test('Ship class sends correct object', () => {
     expect(testShip).toEqual({
-    model: 'Submarine',
+    status: 'submarine',
     size: 3,
     hits: 0,
-    sunk: false  })
+    sunk: false,
+    })
 })
 
 test('Ship has hit method', () => {

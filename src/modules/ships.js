@@ -1,7 +1,7 @@
 
 export default class Ship{
     constructor(model, size){
-        this.model = model;
+        this.status = model;
         this.size = size;
         this.hits = 0;
         this.sunk = false;
