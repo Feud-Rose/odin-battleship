@@ -38,10 +38,7 @@ export default class Gameboard{
         let shipInfo = [this.ships[shipIndex]]
         if(!shipInfo) return console.error("No ship at that index");
         let size = shipInfo[0].size
-        console.log(shipInfo[0].size)
         
-        
-
         if(direction === "up"){
             let coordinates = this.createTileArrayStaticX(location,+1,size)
             let validate = this.validatePlacement(coordinates)
@@ -126,7 +123,7 @@ export default class Gameboard{
         }
         
         else if(!missed){ 
-            
+            ///might need redo
             let hitShip = this.grid[x][y].ship
             console.log(hitShip)
             hitShip.hit()
@@ -148,8 +145,10 @@ export default class Gameboard{
         return false
     }
 
-    
+    areAllShipsSunk(){
+        let remainingShips = this.remaining
+        if(remainingShips >= 1) return false
+        else return true
+     }
 
 }
-
-

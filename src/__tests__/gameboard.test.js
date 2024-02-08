@@ -1,4 +1,5 @@
 import Gameboard from "../modules/gameboard";
+import Ship from "../modules/ships";
 
 
 
@@ -154,7 +155,18 @@ describe("Gameboard", () => {
         });
     });    
 
+    describe(".areAllShipsSunk", () => {
+      
+        ///create mock with remaining ships
 
+        test("returns true if all ships are sunk", () => {
+            expect(gameBoardTest.areAllShipsSunk()).toBe(true);
+        });
+
+ /*        test("returns false if any amount of ships remain", () => {
+            expect(gameBoardTest.areAllShipsSunk()).toBe(false);
+        }); */
+    }); 
 
 
 
