@@ -58,7 +58,7 @@ describe("Gameboard", () => {
           createShipSpy.mockClear();
         });
 
-        test("updates gameboard", () => {
+        test("updates gameBoard", () => {
             expect(gameBoardTest.createShip("submarine",3)).toBeUndefined();
             expect(gameBoardTest.ships[0]).toEqual(submarine);
             createShipSpy.mockClear();
@@ -76,14 +76,14 @@ describe("Gameboard", () => {
          
         });
 
-        test("updates gameboard", () => {
+        test("updates gameBoard", () => {
             expect(gameBoardTest.placeShip(0,[3,5],"left")).toBe(true);
             expect(gameBoardTest.grid[1][5].status).toEqual("submarine");
             expect(gameBoardTest.grid[2][5].status).toEqual("submarine");
             expect(gameBoardTest.grid[3][5].status).toEqual("submarine");
           });
 
-        test("doesn't place outside gameboard", () => {
+        test("doesn't place outside gameBoard", () => {
             expect(gameBoardTest.placeShip(0,[1,1],"down")).toBe(false);
             expect(gameBoardTest.grid[1][0].status).toEqual("null");
             expect(gameBoardTest.grid[1][1].status).toEqual("empty");

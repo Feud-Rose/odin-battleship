@@ -125,7 +125,6 @@ export default class Gameboard{
         else if(!missed){ 
             ///might need redo
             let hitShip = this.grid[x][y].ship
-            console.log(hitShip)
             hitShip.hit()
             let isShipSunk = hitShip.isSunk
             if(isShipSunk){
