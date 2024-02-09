@@ -8,7 +8,7 @@ describe('player', () => {
         expect(typeof testPlayer).toBe("object")
     })
 
-    test('assings player name ', () => {
+    test('assigns player name ', () => {
         expect(testPlayer.name).toBe("Harold")
     })  
 
