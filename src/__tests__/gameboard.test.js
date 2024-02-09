@@ -40,10 +40,10 @@ describe("Gameboard", () => {
     })
     test('Row 8 is correct', () => {
         expect(gameBoardTest.grid[8]).toStrictEqual([
-            {"status": "null"},{"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},
-            {"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},
-            {"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},
-            {"status": "empty","attacked": "hasNot"},{"status": "empty","attacked": "hasNot"},{"status": "null"}]
+            {"status": "null"},{"status": "empty","attacked": false},{"status": "empty","attacked": false},
+            {"status": "empty","attacked": false},{"status": "empty","attacked": false},{"status": "empty","attacked": false},
+            {"status": "empty","attacked": false},{"status": "empty","attacked": false},{"status": "empty","attacked": false},
+            {"status": "empty","attacked": false},{"status": "empty","attacked": false},{"status": "null"}]
         )
     })
 

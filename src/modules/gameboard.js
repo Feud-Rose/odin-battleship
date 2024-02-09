@@ -19,7 +19,7 @@ export default class Gameboard{
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill({status: "empty", attacked: "hasNot"},1)
+            let row = new Array(this.xy+1).fill({status: "empty", attacked: false},1)
             row[0] = {status: "null"}
             row.push({status: "null"})
             this.grid.push(row)}
