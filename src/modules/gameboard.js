@@ -30,7 +30,7 @@ export default class Gameboard{
     createShip(model, size){
         let newShip = new Ship(model, size)
         this.ships.push(newShip)
-        this.remaining += this.remaining
+        this.remaining += 1
     }
 
     
@@ -129,8 +129,8 @@ export default class Gameboard{
             let isShipSunk = hitShip.isSunk
             if(isShipSunk){
                 hitShip.sinkShip
-                this.remaining -= this.remaining
-               // if(this.remaining >= 0) Lost game
+                this.remaining -= 1
+                if(this.remaining <= 0) console.log("lost")
             } 
             
             return "Hit"
