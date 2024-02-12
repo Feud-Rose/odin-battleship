@@ -38,17 +38,10 @@ export default class Computer extends Player{
 
 
     takeTurn(){
-      
         let randomTile = this.getRandomTile()
         let results = this.opponent.gameBoard.receiveAttack(randomTile)
         this.attemptedAttacks.add(`${randomTile[0]}_${randomTile[1]}`);
         return results
-
-      
-        
-
-
-
     }
 
 

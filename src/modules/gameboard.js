@@ -108,7 +108,7 @@ export default class Gameboard{
         for(let i = 0; i < tiles.length; i++){
             let x = tiles[i][0]
             let y =  tiles[i][1]
-            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: "hasNot", ship:this.ships[shipIndex]}
+            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: false, ship:this.ships[shipIndex]}
         }
     }
 

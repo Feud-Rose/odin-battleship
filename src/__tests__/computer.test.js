@@ -71,6 +71,17 @@ describe('computer', () => {
          })
     })
 
+    describe('.createFleet', () => {
+        test('assigns carrier to index of 0', () => {
+        expect(testOpponent.gameBoard.ships[0].status).toBe("carrier")
+        })
+        test('assigns patrol-boat to index of 4', () => {
+        expect(testOpponent.gameBoard.ships[4].status).toBe("patrol-boat")
+        })
+
+    })
+
+
     //Todo Add More take turn tests
     describe('.takeTurn', () => {
 
