@@ -1,0 +1,48 @@
+
+
+
+.game {
+    display: flex;
+}
+.player-border, .computer-border {
+    background-color: blue;
+    border-color: black;
+    border-style: solid;
+    padding: 5px;
+}
+
+.player-grid, .computer-grid {
+    background-color: pink;
+    border-color: black;
+    border-style: solid;
+    display: grid;
+    grid-template-rows: repeat(12, 40px);
+    grid-template-columns: repeat(12, 40px);
+    gap: 2px;
+}
+
+.tile{
+    border: black;
+    border-style: solid;
+    min-width: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    max-height: 40px;
+    font-size: 10px;
+}
+
+.null{
+    background-color: black;
+}
+
+.empty{
+    background-color: aqua;
+}
+
+.carrier,
+.battleship,
+.destroyer,
+.submarine,
+.patrol-boat{
+    background-color: silver;
+}

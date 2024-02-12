@@ -79,13 +79,13 @@ describe("Gameboard", () => {
 
         test("updates gameBoard", () => {
             expect(gameBoardTest.placeShip(0,[3,5],"left")).toBe(true);
-            expect(gameBoardTest.grid[1][5].status).toEqual("submarine");
-            expect(gameBoardTest.grid[2][5].status).toEqual("submarine");
+            expect(gameBoardTest.grid[3][4].status).toEqual("submarine");
+            expect(gameBoardTest.grid[3][3].status).toEqual("submarine");
             expect(gameBoardTest.grid[3][5].status).toEqual("submarine");
           });
 
         test("doesn't place outside gameBoard", () => {
-            expect(gameBoardTest.placeShip(0,[1,1],"down")).toBe(false);
+            expect(gameBoardTest.placeShip(0,[1,1],"up")).toBe(false);
             expect(gameBoardTest.grid[1][0].status).toEqual("null");
             expect(gameBoardTest.grid[1][1].status).toEqual("empty");
             expect(gameBoardTest.grid[1][2].status).toEqual("empty");
@@ -158,15 +158,18 @@ describe("Gameboard", () => {
 
     describe(".areAllShipsSunk", () => {
       
-        ///create mock with remaining ships
+        
+        const sunkShips = {remaining: 0}
+        const unSunkShips = {remaining: 5}
 
         test("returns true if all ships are sunk", () => {
-            expect(gameBoardTest.areAllShipsSunk()).toBe(true);
+            expect(gameBoardTest.areAllShipsSunk(sunkShips.remaining)).toBe(true);
         });
 
- /*        test("returns false if any amount of ships remain", () => {
-            expect(gameBoardTest.areAllShipsSunk()).toBe(false);
-        }); */
+        
+        test("returns false if any amount of ships remain", () => {
+            expect(gameBoardTest.areAllShipsSunk(unSunkShips.remaining)).toBe(false);
+        });
     }); 
 
 
@@ -178,14 +181,11 @@ describe("Gameboard", () => {
         newPlayer.createFleet()
         newPlayer.gameBoard.defaultPlaceShip()
 
-
-        
-
         test('assigns carrier to be at tile 5,7', () => {
         expect(newPlayer.gameBoard.grid[5][7].status).toBe("carrier")
         })
-        test('assigns patrol-boat to be at tile 1,2', () => {
-        expect(newPlayer.gameBoard.grid[1][2].status).toBe("patrol-boat")
+        test('assigns patrol-boat to be at tile 2,1', () => {
+        expect(newPlayer.gameBoard.grid[2][1].status).toBe("patrol-boat")
         })
 
     })

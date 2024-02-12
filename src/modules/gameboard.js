@@ -19,7 +19,7 @@ export default class Gameboard{
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill({status: "empty", attacked: false},1)
+            let row = new Array(this.xy+1).fill({status: "empty", attacked: false})
             row[0] = {status: "null"}
             row.push({status: "null"})
             this.grid.push(row)}
@@ -39,7 +39,7 @@ export default class Gameboard{
         if(!shipInfo) return console.error("No ship at that index");
         let size = shipInfo[0].size
         
-        if(direction === "up"){
+        if(direction === "right"){
             let coordinates = this.createTileArrayStaticX(location,+1,size)
             let validate = this.validatePlacement(coordinates)
             
@@ -47,7 +47,7 @@ export default class Gameboard{
 
             return validate
         }
-        else if(direction === "down"){
+        else if(direction === "left"){
             let coordinates = this.createTileArrayStaticX(location,-1,size)
             let validate = this.validatePlacement(coordinates)
             
@@ -55,7 +55,7 @@ export default class Gameboard{
 
             return validate
         }
-        else if(direction === "left"){
+        else if(direction === "up"){
             let coordinates = this.createTileArrayStaticY(location,-1,size)
             let validate = this.validatePlacement(coordinates)
 
@@ -63,7 +63,7 @@ export default class Gameboard{
 
             return validate
         }
-        else if(direction === "right"){
+        else if(direction === "down"){
             let coordinates = this.createTileArrayStaticY(location,+1,size)
             let validate = this.validatePlacement(coordinates)
 
@@ -144,18 +144,18 @@ export default class Gameboard{
         return false
     }
 
-    areAllShipsSunk(){
-        let remainingShips = this.remaining
-        if(remainingShips >= 1) return false
+    areAllShipsSunk(remaining = this.remaining){
+        
+        if(remaining >= 1) return false
         else return true
      }
 
     ///Place ships in predetermined spots
     defaultPlaceShip(){
        this.placeShip(0, [5,7], "down")
-       this.placeShip(1, [4,3], "up")
+       this.placeShip(1, [4,4], "up")
        this.placeShip(2, [1,7], "down")
-       this.placeShip(3, [4,4], "left")
+       this.placeShip(3, [9,5], "left")
        this.placeShip(4, [2,2], "left")
     }
 
