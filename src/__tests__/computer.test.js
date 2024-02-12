@@ -1,4 +1,6 @@
 import Computer from "../modules/computer.js"
+import GameMaster from "../modules/gamemaster.js"
+import Gameboard from "../modules/gameboard.js"
 
 
 describe('computer', () => {
@@ -44,23 +46,45 @@ describe('computer', () => {
     })  
     })
 
-    describe('.pickRandomTile', () => {
-        test('to return array of 2', () => {
-        expect(testOpponent.pickRandomTile()).toHaveLength(2)  
+    describe('.pickTile', () => {
+        test('to return array of with length 2', () => {
+        const randomNum = jest
+        .fn(() => "null")
+        .mockImplementationOnce(() => 3)
+        .mockImplementationOnce(() => 4)
+
+        expect(testOpponent.pickTile(randomNum,randomNum)).toEqual([3,4])  
+
     }) 
     })
 
 
-    describe('.validateTile', () => {
-        test('return true if tile has not been attacked', () => {
+    describe('.validate', () => {
+        testOpponent.attemptedAttacks.add("4_8");
+        testOpponent.gameBoard.grid[4][8] = { status: 'empty', attacked: true }
+       
+        test('return true if tile is a valid target', () => {
         expect(testOpponent.validateTile([3,5])).toBe(true)  
-    }) 
-
-///Need a mock
-  /*       test('return false if tile has been attacked', () => {
-        expect(testOpponent.validateTile([7,8])).toBe(false)  
-    })  */
+        }) 
+        test('return false if tile is an invalid target', () => {
+        expect(testOpponent.validateTile([4,8])).toBe(false) 
+         })
     })
+
+    //Todo Add More take turn tests
+    describe('.takeTurn', () => {
+
+        let testMaster = new GameMaster("Dave")
+        testMaster.linkPlayers()
+        testMaster.createGameBoards()
+        const hitMiss = ["Hit", "Missed"]
+
+        test('to return hit or missed', () => {
+            const takeTestTurn = testMaster.computer.takeTurn()
+        expect(hitMiss).toContain(takeTestTurn)  
+        
+    }) 
+    }) 
 
 
 })
