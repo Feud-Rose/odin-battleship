@@ -22,4 +22,5 @@ export default class Player{
        this.gameBoard.createShip("patrol-boat", 2)
 
     }
+    
 }

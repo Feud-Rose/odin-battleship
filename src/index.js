@@ -22,5 +22,5 @@ function startNewGame(name){
     
     /////function to create board UI
     
-    console.log(newGame)
+  /*   console.log(newGame) */
 }

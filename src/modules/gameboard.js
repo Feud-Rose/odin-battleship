@@ -150,4 +150,13 @@ export default class Gameboard{
         else return true
      }
 
+    ///Place ships in predetermined spots
+    defaultPlaceShip(){
+       this.placeShip(0, [5,7], "down")
+       this.placeShip(1, [4,3], "up")
+       this.placeShip(2, [1,7], "down")
+       this.placeShip(3, [4,4], "left")
+       this.placeShip(4, [2,2], "left")
+    }
+
 }

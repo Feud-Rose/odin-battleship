@@ -16,7 +16,6 @@ export default class GameMaster{
 
     createGameBoards(){
         this.player.initializeGameBoard()
-        console.log(this.player.gameBoard)
         this.computer.initializeGameBoard()
     }
 

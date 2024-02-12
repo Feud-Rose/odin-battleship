@@ -1,4 +1,5 @@
 import Gameboard from "../modules/gameboard";
+import Player from "../modules/players";
 import Ship from "../modules/ships";
 
 
@@ -169,7 +170,25 @@ describe("Gameboard", () => {
     }); 
 
 
+       //default ship placement
 
+       describe('.defaultPlaceShip', () => {
+        const newPlayer = new Player("Carol")
+        newPlayer.initializeGameBoard()
+        newPlayer.createFleet()
+        newPlayer.gameBoard.defaultPlaceShip()
+
+
+        
+
+        test('assigns carrier to be at tile 5,7', () => {
+        expect(newPlayer.gameBoard.grid[5][7].status).toBe("carrier")
+        })
+        test('assigns patrol-boat to be at tile 1,2', () => {
+        expect(newPlayer.gameBoard.grid[1][2].status).toBe("patrol-boat")
+        })
+
+    })
 
 
 
