@@ -9,8 +9,8 @@ export default class Player{
         this.opponent = null
     }
 
-    initializeGameBoard(){
-        this.gameBoard = new Gameboard(10)
+    initializeGameBoard(fog=false){
+        this.gameBoard = new Gameboard(10,fog)
         
     }
 

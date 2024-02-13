@@ -21,6 +21,11 @@ function drawBoard(target,grid){
         row.forEach((col,yIndex) => {
         let newDiv = document.createElement("div")
         newDiv.classList.add('tile',col.status,`${index}_${yIndex}`)
+        
+        if(col.fog === true) { 
+            newDiv.classList.add('fog-of-war') 
+        }
+        
         newDiv.textContent = `${index}_${yIndex}`
         newBoard.appendChild(newDiv)
 

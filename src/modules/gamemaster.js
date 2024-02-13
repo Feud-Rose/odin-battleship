@@ -16,7 +16,8 @@ export default class GameMaster{
 
     createGameBoards(){
         this.player.initializeGameBoard()
-        this.computer.initializeGameBoard()
+        ///Pass true too enable Fog of War
+        this.computer.initializeGameBoard(true) 
     }
 
     linkPlayers(){

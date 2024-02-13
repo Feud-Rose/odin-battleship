@@ -3,23 +3,25 @@ import Ship from "./ships"
 
 
 export default class Gameboard{
-    constructor(num){
+    constructor(num, fog= false){
         
         this.xy = num
         this.remaining = 0
         this.grid = []
         this.ships = []
+        this.fogOfWar = fog
         for(let i = 0; i < this.xy + 2; i++){ 
 
-            let last = this.xy + 1
 
+            ///Create a border of null tiles around the field to mark edges
+            let last = this.xy + 1
             if(i === 0 || (i === last))
             {
             let row = new Array(this.xy+2).fill({status: "null"})
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill({status: "empty", attacked: false})
+            let row = new Array(this.xy+1).fill({status: "empty", attacked: false,fog: this.fogOfWar})
             row[0] = {status: "null"}
             row.push({status: "null"})
             this.grid.push(row)}
@@ -108,7 +110,7 @@ export default class Gameboard{
         for(let i = 0; i < tiles.length; i++){
             let x = tiles[i][0]
             let y =  tiles[i][1]
-            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: false, ship:this.ships[shipIndex]}
+            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: false, ship:this.ships[shipIndex], fog:this.fogOfWar}
         }
     }
 

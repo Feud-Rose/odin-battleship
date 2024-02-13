@@ -39,10 +39,15 @@
     background-color: aqua;
 }
 
+
 .carrier,
 .battleship,
 .destroyer,
 .submarine,
 .patrol-boat{
     background-color: silver;
+}
+
+.fog-of-war{
+    background-color: darkgray;
 }
