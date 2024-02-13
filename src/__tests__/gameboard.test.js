@@ -137,11 +137,11 @@ describe("Gameboard", () => {
     describe(".receiveAttack", () => {
     
         test("returns Hit if ship is on tile", () => {
-            expect(gameBoardTest.receiveAttack([3,5])).toBe("Hit");
+            expect(gameBoardTest.receiveAttack([3,5])).toBe("hit");
         });
 
         test("returns Missed if tile is empty", () => {
-            expect(gameBoardTest.receiveAttack([7,7])).toBe("Missed");
+            expect(gameBoardTest.receiveAttack([7,7])).toBe("missed");
         });
     });    
 

@@ -121,21 +121,23 @@ export default class Gameboard{
         if(missed){
            // mark as miss
                 
-            return "Missed"
+            return "missed"
         }
         
         else if(!missed){ 
             ///might need redo
             let hitShip = this.grid[x][y].ship
             hitShip.hit()
-            let isShipSunk = hitShip.isSunk
+            let isShipSunk = hitShip.isSunk()
+            console.log(isShipSunk)
             if(isShipSunk){
-                hitShip.sinkShip
                 this.remaining -= 1
-                if(this.remaining <= 0) console.log("lost")
+                let areAllSunk = this.areAllShipsSunk()
+                if(areAllSunk) console.log("lost")
+                return "gameover"
             } 
             
-            return "Hit"
+            return "hit"
         }
         
     }
@@ -147,7 +149,7 @@ export default class Gameboard{
     }
 
     areAllShipsSunk(remaining = this.remaining){
-        
+        console.log(remaining)
         if(remaining >= 1) return false
         else return true
      }

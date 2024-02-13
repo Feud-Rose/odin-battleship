@@ -13,8 +13,6 @@ newGameButton.addEventListener("click", (e) => {
     let start = startNewGame(name)
 })
 
-
-
 function startNewGame(name){
     const newGame = new GameMaster(name)
     
@@ -31,9 +29,14 @@ function startNewGame(name){
     newGame.computer.gameBoard.defaultPlaceShip()
     
     /////function to create board UI
-    let playerDraw = drawBoard("player",newGame.player.gameBoard.grid)
-    let computerDraw = drawBoard("computer",newGame.computer.gameBoard.grid)
+    let playerDraw = drawBoard("player",newGame)
+    let computerDraw = drawBoard("computer",newGame)
  
+
+
+
+
+
     console.log(newGame)
 }
 
