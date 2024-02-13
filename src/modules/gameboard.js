@@ -149,7 +149,6 @@ export default class Gameboard{
     }
 
     areAllShipsSunk(remaining = this.remaining){
-        console.log(remaining)
         if(remaining >= 1) return false
         else return true
      }

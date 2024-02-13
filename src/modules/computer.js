@@ -17,11 +17,9 @@ export default class Computer extends Player{
       }
 
     fillAttackTargets(){
-        console.log(this.attackTargets)
         this.gameBoard.grid.forEach((row,index) => {
             row.forEach((col,yIndex) => {
                 let status = col.status
-                console.log(status)
                 if(status === "empty"){
                    this.attackTargets.push([index,yIndex])
                 }
@@ -46,9 +44,8 @@ export default class Computer extends Player{
         if(valid) return randomTile */
 
         let sliceTarget = cloneArr.splice(newRandom,1)
-        console.log(sliceTarget)
+        
         this.attackTargets = cloneArr
-        console.log(this.attackTargets.length)
         return [sliceTarget[0][0],sliceTarget[0][1]]
 
     }
@@ -56,7 +53,6 @@ export default class Computer extends Player{
 
     takeTurn(game){
         let randomTile = this.getRandomTile()
-        console.log(randomTile)
         let results = this.opponent.gameBoard.receiveAttack(randomTile)
         
         ///return an object with information about turn
