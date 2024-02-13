@@ -68,6 +68,9 @@ export default function drawBoard(target,game){
 } 
 
 function repaintTile(results, arr){
+    console.log(arr[0])
+    console.log(arr[1])
+    console.log(`player-${arr[0]}_${arr[1]}`)
     let div = document.getElementById(`player-${arr[0]}_${arr[1]}`)
     console.log(div)
     div.classList.add(results)

@@ -19,6 +19,7 @@ function startNewGame(name){
     
     newGame.createGameBoards()
     newGame.linkPlayers()
+    newGame.computer.fillAttackTargets()
 
     //Run Fleet Creation
     newGame.player.createFleet()

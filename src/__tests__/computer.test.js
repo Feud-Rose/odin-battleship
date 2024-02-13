@@ -35,9 +35,9 @@ describe('computer', () => {
     }) 
     })
 
-    ///Need a Mock test as well
-
-    describe('.randomNumber', () => {
+   
+ ///remove if not validate no longer needed
+/*     describe('.randomNumber', () => {
         test('less then 11', () => {
         expect(testOpponent.randomNumber()).toBeLessThan(11)
     }) 
@@ -45,7 +45,7 @@ describe('computer', () => {
         expect(testOpponent.randomNumber()).toBeGreaterThan(0)
     })  
     })
-
+ */
     describe('.pickTile', () => {
         test('to return array of with length 2', () => {
         const randomNum = jest
@@ -58,8 +58,8 @@ describe('computer', () => {
     }) 
     })
 
-
-    describe('.validate', () => {
+ ///remove if not validate no longer needed
+/*     describe('.validate', () => {
         testOpponent.attemptedAttacks.add("4_8");
         testOpponent.gameBoard.grid[4][8] = { status: 'empty', attacked: true }
        
@@ -69,7 +69,7 @@ describe('computer', () => {
         test('return false if tile is an invalid target', () => {
         expect(testOpponent.validateTile([4,8])).toBe(false) 
          })
-    })
+    }) */
 
     describe('.createFleet', () => {
         test('assigns carrier to index of 0', () => {
