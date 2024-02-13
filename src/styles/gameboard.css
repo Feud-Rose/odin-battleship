@@ -51,3 +51,8 @@
 .fog-of-war{
     background-color: darkgray;
 }
+
+.missed{
+    background-color: rgb(116, 16, 16); 
+}
+
