@@ -1,5 +1,6 @@
 export default function drawBoard(target,game){
     let newBoard = document.querySelector(`.${target}-grid`)
+    newBoard.textContent = ""
     let grid = game[target].gameBoard.grid
     const logBox = document.querySelector(".log")
     console.log(game)
@@ -59,6 +60,7 @@ export default function drawBoard(target,game){
 
 
         newDiv.textContent = `${index}_${yIndex}`
+        
         newBoard.appendChild(newDiv)
 
         })
