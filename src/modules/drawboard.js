@@ -20,35 +20,42 @@ export default function drawBoard(target,game){
             newDiv.addEventListener('click', (e) => {
             let active = game.active
             if(active === 1){
-               
-                ///Output hit/miss too div.log
-                let attackResults = game.computer.gameBoard.receiveAttack(array)
-                logBox.textContent = attackResults
-                ///set turn too computer
-                game.active += 1
 
-                //repaint tile
-                newDiv.classList.remove('fog-of-war')
-                newDiv.classList.add(attackResults[0])
-
-                ///let Computer take a turn
-                let compTurnData = game.computer.takeTurn()
-                console.log(compTurnData) 
-                 
-                let results = compTurnData.results
-                /// toDo if(results === "gameover") return game.finish("Computer")
-
-               
-
-                ///else
-                let repaintPlayerTile = repaintTile(compTurnData.results, compTurnData.attackedTile)
-
-
-               
-
-                game.active -= 1   
-
-            }
+                ///tile not attacked
+          
+                    if(game.computer.gameBoard.grid[array[0]][array[1]].unAttacked === true){ 
+                        console.log("but its false bro")     
+                    ///Output hit/miss too div.log
+                    let attackResults = game.computer.gameBoard.receiveAttack(array)
+                    console.log(attackResults)
+                    logBox.textContent = attackResults
+                    ///set turn too computer
+                    game.active += 1
+                    let passTurn = true
+                        console.log(passTurn)
+                    if(passTurn){
+                        //repaint tile
+                        newDiv.classList.remove('fog-of-war')
+                        newDiv.classList.add(attackResults[0])
+        
+                        ///let Computer take a turn
+                        let compTurnData = game.computer.takeTurn()
+                        console.log(compTurnData) 
+                        
+                        let results = compTurnData.results
+                        /// toDo if(results === "gameover") return game.finish("Computer")
+        
+                    
+        
+                        ///else
+                        let repaintPlayerTile = repaintTile(compTurnData.results, compTurnData.attackedTile)
+        
+        
+                
+                        game.active -= 1   }
+                
+                }
+        }
             })
         }
         ///Add class too player tiles to find when they are attacked

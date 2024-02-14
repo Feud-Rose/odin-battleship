@@ -41,11 +41,11 @@ describe("Gameboard", () => {
     })
     test('Row 8 is correct', () => {
         expect(gameBoardTest.grid[8]).toStrictEqual([
-            {"status": "null"},{"status": "empty","attacked": false, "fog": false},{"status": "empty","attacked": false, "fog": false},
-            {"status": "empty","attacked": false, "fog": false},{"status": "empty","attacked": false, "fog": false},
-            {"status": "empty","attacked": false, "fog": false},{"status": "empty","attacked": false, "fog": false},
-            {"status": "empty","attacked": false, "fog": false},{"status": "empty","attacked": false, "fog": false},
-            {"status": "empty","attacked": false, "fog": false},{"status": "empty","attacked": false, "fog": false},{"status": "null"}]
+            {"status": "null"},{"status": "empty","unAttacked": true, "fog": false},{"status": "empty","unAttacked": true, "fog": false},
+            {"status": "empty","unAttacked": true, "fog": false},{"status": "empty","unAttacked": true, "fog": false},
+            {"status": "empty","unAttacked": true, "fog": false},{"status": "empty","unAttacked": true, "fog": false},
+            {"status": "empty","unAttacked": true, "fog": false},{"status": "empty","unAttacked": true, "fog": false},
+            {"status": "empty","unAttacked": true, "fog": false},{"status": "empty","unAttacked": true, "fog": false},{"status": "null"}]
         )
     })
 

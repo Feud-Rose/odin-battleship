@@ -21,7 +21,7 @@ export default class Gameboard{
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill({status: "empty", attacked: false,fog: this.fogOfWar})
+            let row = new Array(this.xy+1).fill({status: "empty", unAttacked: true,fog: this.fogOfWar})
             row[0] = {status: "null"}
             row.push({status: "null"})
             this.grid.push(row)}
@@ -110,7 +110,7 @@ export default class Gameboard{
         for(let i = 0; i < tiles.length; i++){
             let x = tiles[i][0]
             let y =  tiles[i][1]
-            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: false, ship:this.ships[shipIndex], fog:this.fogOfWar}
+            this.grid[x][y] = {status: this.ships[shipIndex].status, unAttacked: true, ship:this.ships[shipIndex], fog:this.fogOfWar}
         }
     }
 
@@ -118,23 +118,24 @@ export default class Gameboard{
 
     receiveAttack([x,y]){
         let missed = this.isTileEmpty([x,y])
+        this.grid[x][y].unAttacked = false
         if(missed){
-           // mark as miss
-                
-            return "missed"
+           
+           
+           return "missed"
         }
         
         else if(!missed){ 
-            ///might need redo
+            
             let hitShip = this.grid[x][y].ship
             hitShip.hit()
             let isShipSunk = hitShip.isSunk()
-            console.log(isShipSunk)
             if(isShipSunk){
+                console.log(this.remaining)
                 this.remaining -= 1
                 let areAllSunk = this.areAllShipsSunk()
-                if(areAllSunk) console.log("lost")
-                return "gameover"
+                if(areAllSunk) return "gameover"
+                
             } 
             
             return "hit"
@@ -149,6 +150,7 @@ export default class Gameboard{
     }
 
     areAllShipsSunk(remaining = this.remaining){
+        console.log(remaining)
         if(remaining >= 1) return false
         else return true
      }
