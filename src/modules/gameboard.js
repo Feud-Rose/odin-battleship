@@ -21,8 +21,11 @@ export default class Gameboard{
             this.grid.push(row)
         }
             else{
-            let row = new Array(this.xy+1).fill({status: "empty", unAttacked: true,fog: this.fogOfWar})
+            let row = new Array(this.xy+1)
             row[0] = {status: "null"}
+            for(let j = 1; j < this.xy+1; j++){
+            row[j] =  {status: "empty", attacked: "No",fog: this.fogOfWar}
+            }
             row.push({status: "null"})
             this.grid.push(row)}
             }
@@ -110,7 +113,7 @@ export default class Gameboard{
         for(let i = 0; i < tiles.length; i++){
             let x = tiles[i][0]
             let y =  tiles[i][1]
-            this.grid[x][y] = {status: this.ships[shipIndex].status, unAttacked: true, ship:this.ships[shipIndex], fog:this.fogOfWar}
+            this.grid[x][y] = {status: this.ships[shipIndex].status, attacked: "No", ship:this.ships[shipIndex], fog:this.fogOfWar}
         }
     }
 
@@ -118,15 +121,14 @@ export default class Gameboard{
 
     receiveAttack([x,y]){
         let missed = this.isTileEmpty([x,y])
-        this.grid[x][y].unAttacked = false
         if(missed){
-           
-           
+        this.markAttacked(this.grid[x][y])
+
            return "missed"
         }
         
         else if(!missed){ 
-            
+            this.markAttacked(this.grid[x][y])
             let hitShip = this.grid[x][y].ship
             hitShip.hit()
             let isShipSunk = hitShip.isSunk()
@@ -143,6 +145,11 @@ export default class Gameboard{
         
     }
 
+    markAttacked(tile){
+        console.log(tile)
+        tile.attacked = "Yes"
+    }
+
     isTileEmpty([x,y]){
         let gridCode = this.grid[x][y]
         if(gridCode.status === "empty") return true
@@ -150,7 +157,6 @@ export default class Gameboard{
     }
 
     areAllShipsSunk(remaining = this.remaining){
-        console.log(remaining)
         if(remaining >= 1) return false
         else return true
      }

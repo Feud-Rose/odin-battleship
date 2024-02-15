@@ -1,4 +1,4 @@
-export default function drawBoard(target,game){
+function dra(target,game){
     let newBoard = document.querySelector(`.${target}-grid`)
     newBoard.textContent = ""
     let grid = game[target].gameBoard.grid
@@ -16,40 +16,43 @@ export default function drawBoard(target,game){
             newDiv.id = `${index}_${yIndex}`
             newDiv.classList.add('fog-of-war')
             let array = [index,yIndex]
-            let firstLetter = col.status.charAt(0).toUpperCase()
+            let x = index
+            let y = yIndex
             newDiv.addEventListener('click', (e) => {
             let active = game.active
+            console.log(e.target)
             if(active === 1){
-
+                console.log(col)
                 ///tile not attacked
           
-                    if(game.computer.gameBoard.grid[array[0]][array[1]].unAttacked === true){ 
-                        console.log("but its false bro")     
+                    if(col.attacked === "No"){
+                   
+
                     ///Output hit/miss too div.log
                     let attackResults = game.computer.gameBoard.receiveAttack(array)
-                    console.log(attackResults)
+                    
+                    //repaint tile
+                   
+                    newDiv.classList.remove('fog-of-war')
+                    newDiv.classList.add(attackResults[0])
+
+                    //display results
+                    /// toDo if(results === "gameover") return game.finish("Player Wins")
                     logBox.textContent = attackResults
+                   
                     ///set turn too computer
                     game.active += 1
                     let passTurn = true
-                        console.log(passTurn)
-                    if(passTurn){
-                        //repaint tile
-                        newDiv.classList.remove('fog-of-war')
-                        newDiv.classList.add(attackResults[0])
-        
-                        ///let Computer take a turn
+                    ///let Computer take a turn
+                    if(passTurn === true){
+
                         let compTurnData = game.computer.takeTurn()
-                        console.log(compTurnData) 
                         
                         let results = compTurnData.results
-                        /// toDo if(results === "gameover") return game.finish("Computer")
-        
-                    
+                        /// toDo if(results === "gameover") return game.finish("Computer Wins")
         
                         ///else
                         let repaintPlayerTile = repaintTile(compTurnData.results, compTurnData.attackedTile)
-        
         
                 
                         game.active -= 1   }
@@ -77,11 +80,88 @@ export default function drawBoard(target,game){
 } 
 
 function repaintTile(results, arr){
-    console.log(arr[0])
-    console.log(arr[1])
-    console.log(`player-${arr[0]}_${arr[1]}`)
+
     let div = document.getElementById(`player-${arr[0]}_${arr[1]}`)
-    console.log(div)
+   
     div.classList.add(results)
 
+}
+
+export default function drawBoard(target,game){
+    let newBoard = document.querySelector(`.${target}-grid`)
+    newBoard.textContent = ""
+    let grid = game[target].gameBoard.grid
+    const logBox = document.querySelector(".log")
+    console.log(game)
+    console.log(grid)
+    for(let i = 0; i< game[target].gameBoard.grid.length;i++){
+        for(let j = 0; j< game[target].gameBoard.grid.length;j++){
+            let xIndex = i
+            let yIndex = j
+            let newDiv = document.createElement("div")
+            console.log(game[target].gameBoard.grid[i][j].attacked)
+            newDiv.classList.add('tile',game[target].gameBoard.grid[i][j].status)
+            newDiv.id = `${xIndex}_${yIndex}`
+            newDiv.textContent = `${xIndex}_${yIndex}`
+            let fog = game[target].gameBoard.grid[i][j].fog
+            console.log(fog)
+            if(fog === true) { 
+                newDiv.id = `${xIndex}_${yIndex}`
+                newDiv.classList.add('fog-of-war')
+
+
+
+                newDiv.addEventListener('click', (e) => {
+                    let active = game.active
+                    console.log(e.target)
+                    if(active === 1){
+                        console.log(game[target].gameBoard.grid[i][j].attacked)
+                        ///tile not attacked
+                
+                        if(game[target].gameBoard.grid[i][j].attacked === "No"){
+
+                            ///Output hit/miss too div.log
+                            let attackResults = game.computer.gameBoard.receiveAttack([xIndex,yIndex])
+                            
+                            //repaint tile
+                        
+                            newDiv.classList.remove('fog-of-war')
+                            newDiv.classList.add(attackResults[0])
+        
+                            //display results
+                            /// toDo if(results === "gameover") return game.finish("Player Wins")
+                            logBox.textContent = attackResults
+                        
+                            ///set turn too computer
+                            game.active += 1
+                            let passTurn = true
+                            ///let Computer take a turn
+                            if(passTurn === true){
+        
+                                let compTurnData = game.computer.takeTurn()
+                                
+                                let results = compTurnData.results
+                                /// toDo if(results === "gameover") return game.finish("Computer Wins")
+                
+                                ///else
+                                let repaintPlayerTile = repaintTile(compTurnData.results, compTurnData.attackedTile)
+                
+                        
+                                game.active -= 1   }
+                        
+                        }  
+
+                   
+                    }
+                 
+                })
+            }
+            ///Add class too player tiles to find when they are attacked  
+            else {
+                            newDiv.id = `player-${xIndex}_${yIndex}`
+        
+            }
+            newBoard.appendChild(newDiv)
+        }    
+    }
 }
